@@ -13,7 +13,9 @@ class Account
   end
 
   def withdraw(dollar)
-    if dollar.integer? == true
+    if dollar > @balance
+      raise 'not enough money'
+    elsif dollar.integer? == true
       @balance -= dollar
     else
       return 'needs to be dollar'

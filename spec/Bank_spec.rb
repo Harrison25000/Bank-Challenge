@@ -1,6 +1,6 @@
 require './lib/Bank.rb'
 
-describe "it exists" do
+describe "Account details" do
 
   let(:account) {Account.new}
 
@@ -17,5 +17,10 @@ describe "it exists" do
     account.deposit(500)
     account.withdraw(250)
     expect(account.balance).to eq(250)
+  end
+
+  it 'fail to withdraw if not enough money' do
+    account.deposit(500)
+    expect{account.withdraw(501)}.to raise_error 'not enough money'
   end
 end
