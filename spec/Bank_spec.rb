@@ -29,4 +29,13 @@ describe "Account details" do
     account.deposit(500)
     expect{account.withdraw('hello')}.to raise_error 'needs to be dollar'
   end
+
+  it 'adds the time to each transaction' do
+    account.deposit(500)
+    account.withdraw(300)
+    expect(account.balance).to eq(200)
+
+    expect(account.statement).to include('2019 : 4 : 9 - deposit - 500 - balance - 500')
+    expect(account.statement).to include('2019 : 4 : 9 - withdraw - 300 - balance - 200')
+  end
 end
