@@ -5,20 +5,24 @@ class Account
   end
 
   def deposit(dollar)
-    if dollar.integer? == true
+    if dollar.is_a? Integer
       @balance += dollar
     else
-      return 'needs to be dollar'
+      raise 'needs to be dollar'
     end
   end
 
   def withdraw(dollar)
-    if dollar > @balance
+    if dollar.is_a? String
+      raise 'needs to be dollar'
+    end
+    
+    if dollar.integer? && dollar > @balance
       raise 'not enough money'
-    elsif dollar.integer? == true
+    elsif dollar.integer?
       @balance -= dollar
     else
-      return 'needs to be dollar'
+      raise 'needs to be dollar'
     end
   end
 
