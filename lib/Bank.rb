@@ -1,18 +1,21 @@
 require 'Deposit.rb'
 require 'Statement.rb'
 require 'Withdraw.rb'
-
 class Account
-  attr_accessor :balance, :time_array
+  attr_reader :balance, :time_array
   def initialize
     @balance = 0
     @time_array = []
   end
 
   def deposit(dollar)
-    @balance += Deposit.new(dollar).bob
-    time =  "#{Time.new.year} : #{Time.new.month} : #{Time.new.day}"
-    @time_array.push([time, 'deposit', dollar, 'balance', @balance])
+    if dollar.is_a? Integer
+      @balance += dollar
+      time =  "#{Time.new.year} : #{Time.new.month} : #{Time.new.day}"
+      @time_array.push([time, 'deposit', dollar, 'balance', @balance])
+    else
+      raise 'needs to be dollar'
+    end
   end
 
   def withdraw(dollar)
